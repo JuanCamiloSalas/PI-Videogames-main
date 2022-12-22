@@ -34,7 +34,11 @@ module.exports = (sequelize) => {
         createdInDb: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true 
+            defaultValue: false 
+        },
+        img: {
+            type: DataTypes.STRING,
+            defaultValue: "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
         }
     });
 };

@@ -29,7 +29,12 @@ const getVideogamesAPI = async () => {
             id: el.id,
             name: el.name,
             img: el.background_image,
-            genres: el.genres
+            // genres: el.genres.map(el => el.name)
+            genres: el.genres.map(el => {
+                return{
+                    name: el.name
+                }
+            })
         }
     });
 
@@ -42,7 +47,7 @@ const getVideogamesDB = async () => {
         attributes: [
             'id', 
             'name', 
-            /* 'img',  */
+            'img', 
             'createdInDb'
         ],
         include: {
@@ -54,6 +59,16 @@ const getVideogamesDB = async () => {
         }
 
     })
+
+    // const result = await videogames.map(el => {
+    //     let names = el.genres.map( genre => genre.name );
+    //     return {
+    //         ...el,
+    //         genres: names
+    //     }
+    // })
+    // console.log(result[0].dataValues.genres.map(el => el.dataValues.name));
+
     return videogames;
 }
 
@@ -92,7 +107,7 @@ const getVideogamesByNameDB = async (name) => {
                 [Op.iLike]: `%${name}%`
             }
         },
-        attributes: [ 'id', 'name', 'createdInDb'],
+        attributes: [ 'id', 'name', 'img', 'createdInDb'],
         include: {
             model: Genres
         }
@@ -116,6 +131,8 @@ const createVideogame = async (info) => {
         released,
         rating,
         platforms,
+        img,
+        createdInDb,
         genres
     } = info;
 
@@ -124,7 +141,9 @@ const createVideogame = async (info) => {
         description,
         released,
         rating,
-        platforms
+        platforms,
+        img,
+        createdInDb
     });
 
     let genresDB = await Genres.findAll({
