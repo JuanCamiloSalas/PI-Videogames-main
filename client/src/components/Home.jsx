@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideogames } from '../actions/index.js'; 
+import { getVideogames, getGenres } from '../actions/index.js'; 
 import { Link } from 'react-router-dom';
 import Card from './Card.jsx';
 import Paginado from './Paginado.jsx';
@@ -25,7 +25,7 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getVideogames());
-        //dispatch(getGenres());
+        dispatch(getGenres());
     }, [dispatch]);
 
     function handleClick(e) {

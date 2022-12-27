@@ -22,7 +22,7 @@ export function getGenres() {
         let json = await axios.get("http://localhost:3001/genres");
         return dispatch({
             type: GET_GENRES,
-            payload: json.data
+            payload: json.data //FALTA EN EL BACK TRAERLOS
         })
     }
 }
