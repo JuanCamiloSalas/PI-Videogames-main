@@ -6,7 +6,7 @@ const controller = require('../controllers/index.js');
 router.get('/', async (req, res) => {
     try {
         const result = controller.getGenres();
-        res.status(200).json(result);
+        res.json(result);
     } catch (error) {
         console.log(error);
     }

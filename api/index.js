@@ -19,13 +19,14 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { getGenres } = require('./src/controllers/genres.js')
+const { createGenres, createAllVideogames, projectDidMount } = require('./utils/index.js');
+
 
 // Syncing all the models at once.
 //El force true obliga a que todo el escenario se reinicie desde 0
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
-    getGenres();
+    //projectDidMount(8);
   });
 });
